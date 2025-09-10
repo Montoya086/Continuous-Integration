@@ -12,9 +12,19 @@ def reverse(s):
 
     Returns:
         str: Reversed string
+
+    Raises:
+        TypeError: If input is not a string and cannot be converted
     """
+    if s is None:
+        raise TypeError("Cannot reverse None value")
+
     if not isinstance(s, str):
-        return ""
+        try:
+            s = str(s)
+        except Exception as e:
+            raise TypeError(f"Cannot convert input to string: {e}")
+
     return s[::-1]
 
 
@@ -27,9 +37,18 @@ def count_vowels(s):
 
     Returns:
         int: Total number of vowels
+
+    Raises:
+        TypeError: If input is not a string and cannot be converted
     """
+    if s is None:
+        raise TypeError("Cannot count vowels in None value")
+
     if not isinstance(s, str):
-        return 0
+        try:
+            s = str(s)
+        except Exception as e:
+            raise TypeError(f"Cannot convert input to string: {e}")
 
     vowels = "aeiouAEIOU"
     count = 0
@@ -48,9 +67,18 @@ def is_palindrome(s):
 
     Returns:
         bool: True if it is a palindrome, False otherwise
+
+    Raises:
+        TypeError: If input is not a string and cannot be converted
     """
+    if s is None:
+        raise TypeError("Cannot check palindrome for None value")
+
     if not isinstance(s, str):
-        return False
+        try:
+            s = str(s)
+        except Exception as e:
+            raise TypeError(f"Cannot convert input to string: {e}")
 
     # Clean the string: remove spaces, punctuation and convert to lowercase
     import re
@@ -68,9 +96,19 @@ def to_upper(s):
 
     Returns:
         str: String in uppercase
+
+    Raises:
+        TypeError: If input is not a string and cannot be converted
     """
+    if s is None:
+        raise TypeError("Cannot convert None to uppercase")
+
     if not isinstance(s, str):
-        return ""
+        try:
+            s = str(s)
+        except Exception as e:
+            raise TypeError(f"Cannot convert input to string: {e}")
+
     return s.upper()
 
 
@@ -84,11 +122,29 @@ def concat(a, b):
 
     Returns:
         str: Concatenated string
+
+    Raises:
+        TypeError: If inputs cannot be converted to strings
     """
-    if not isinstance(a, str):
-        a = ""
-    if not isinstance(b, str):
-        b = ""
+    if a is None and b is None:
+        raise TypeError("Cannot concatenate two None values")
+
+    try:
+        if a is None:
+            a = ""
+        elif not isinstance(a, str):
+            a = str(a)
+    except Exception as e:
+        raise TypeError(f"Cannot convert first argument to string: {e}")
+
+    try:
+        if b is None:
+            b = ""
+        elif not isinstance(b, str):
+            b = str(b)
+    except Exception as e:
+        raise TypeError(f"Cannot convert second argument to string: {e}")
+
     return a + b
 
 

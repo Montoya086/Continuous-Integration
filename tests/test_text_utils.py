@@ -4,7 +4,7 @@ Unit tests for the text_utils module.
 
 import pytest
 
-from src.text_utils import count_vowels, is_palindrome, reverse
+from src.text_utils import count_vowels, is_palindrome, reverse, to_upper
 
 
 class TestReverse:
@@ -115,6 +115,42 @@ class TestIsPalindrome:
         assert is_palindrome(123) is False
 
 
+class TestToUpper:
+    """Test cases for to_upper function."""
+
+    def test_to_upper_basic(self):
+        """Test basic string conversion to uppercase."""
+        assert to_upper("hello") == "HELLO"
+
+    def test_to_upper_mixed_case(self):
+        """Test conversion of mixed case string."""
+        assert to_upper("Hello World") == "HELLO WORLD"
+
+    def test_to_upper_already_uppercase(self):
+        """Test conversion of already uppercase string."""
+        assert to_upper("HELLO") == "HELLO"
+
+    def test_to_upper_with_numbers(self):
+        """Test conversion with numbers."""
+        assert to_upper("hello123") == "HELLO123"
+
+    def test_to_upper_with_special_chars(self):
+        """Test conversion with special characters."""
+        assert to_upper("hello!") == "HELLO!"
+
+    def test_to_upper_empty_string(self):
+        """Test conversion of empty string."""
+        assert to_upper("") == ""
+
+    def test_to_upper_none_input(self):
+        """Test conversion with None input."""
+        assert to_upper(None) == ""
+
+    def test_to_upper_non_string_input(self):
+        """Test conversion with non-string input."""
+        assert to_upper(123) == ""
+
+
 # Parametrized tests for comprehensive coverage
 class TestParametrized:
     """Parametrized test cases for all functions."""
@@ -163,3 +199,18 @@ class TestParametrized:
     def test_is_palindrome_parametrized(self, input_str, expected):
         """Test is_palindrome function with parametrized inputs."""
         assert is_palindrome(input_str) == expected
+
+    @pytest.mark.parametrize(
+        "input_str,expected",
+        [
+            ("hello", "HELLO"),
+            ("Hello World", "HELLO WORLD"),
+            ("HELLO", "HELLO"),
+            ("hello123", "HELLO123"),
+            ("hello!", "HELLO!"),
+            ("", ""),
+        ],
+    )
+    def test_to_upper_parametrized(self, input_str, expected):
+        """Test to_upper function with parametrized inputs."""
+        assert to_upper(input_str) == expected

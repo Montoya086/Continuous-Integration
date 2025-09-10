@@ -59,16 +59,33 @@ def is_palindrome(s):
     return cleaned == cleaned[::-1]
 
 
+def to_upper(s):
+    """
+    Return the given string in uppercase.
+
+    Args:
+        s (str): String to convert
+
+    Returns:
+        str: String in uppercase
+    """
+    if not isinstance(s, str):
+        return ""
+    return s.upper()
+
+
 def main():
     """Main function for command line usage."""
     print("Text Processor Demo")
     print("=" * 50)
 
-    # Ejemplos de uso
+    # Examples of use
     test_string = "Hello World"
     print(f"Original: {test_string}")
     print(f"Reverse: {reverse(test_string)}")
     print(f"Vowels count: {count_vowels(test_string)}")
+    print(f"Is palindrome: {is_palindrome(test_string)}")
+    print(f"To upper: {to_upper(test_string)}")
 
 
 if __name__ == "__main__":

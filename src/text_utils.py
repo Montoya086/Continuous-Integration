@@ -20,13 +20,13 @@ def reverse(s):
 
 def count_vowels(s):
     """
-    Retorna el total de vocales que tiene una cadena de texto.
+    Return the total number of vowels in the given string.
 
     Args:
-        s (str): Cadena de texto a analizar
+        s (str): String to analyze
 
     Returns:
-        int: Número total de vocales
+        int: Total number of vowels
     """
     if not isinstance(s, str):
         return 0
@@ -37,6 +37,26 @@ def count_vowels(s):
         if char in vowels:
             count += 1
     return count
+
+
+def is_palindrome(s):
+    """
+    Return if the given string is a palindrome or not.
+
+    Args:
+        s (str): String to verify
+
+    Returns:
+        bool: True if it is a palindrome, False otherwise
+    """
+    if not isinstance(s, str):
+        return False
+
+    # Clean the string: remove spaces, punctuation and convert to lowercase
+    import re
+
+    cleaned = re.sub(r"[^a-zA-Z0-9]", "", s.lower())
+    return cleaned == cleaned[::-1]
 
 
 def main():

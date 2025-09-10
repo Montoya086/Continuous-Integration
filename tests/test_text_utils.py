@@ -4,7 +4,7 @@ Unit tests for the text_utils module.
 
 import pytest
 
-from src.text_utils import count_vowels, reverse
+from src.text_utils import count_vowels, is_palindrome, reverse
 
 
 class TestReverse:
@@ -75,6 +75,46 @@ class TestCountVowels:
         assert count_vowels(123) == 0
 
 
+class TestIsPalindrome:
+    """Test cases for is_palindrome function."""
+
+    def test_is_palindrome_basic_true(self):
+        """Test basic palindrome detection (true case)."""
+        assert is_palindrome("racecar") is True
+
+    def test_is_palindrome_basic_false(self):
+        """Test basic palindrome detection (false case)."""
+        assert is_palindrome("hello") is False
+
+    def test_is_palindrome_with_spaces(self):
+        """Test palindrome detection with spaces."""
+        assert is_palindrome("race car") is True
+
+    def test_is_palindrome_mixed_case(self):
+        """Test palindrome detection with mixed case."""
+        assert is_palindrome("RaceCar") is True
+
+    def test_is_palindrome_with_punctuation(self):
+        """Test palindrome detection with punctuation."""
+        assert is_palindrome("A man, a plan, a canal: Panama") is True
+
+    def test_is_palindrome_single_character(self):
+        """Test palindrome detection with single character."""
+        assert is_palindrome("a") is True
+
+    def test_is_palindrome_empty_string(self):
+        """Test palindrome detection with empty string."""
+        assert is_palindrome("") is True
+
+    def test_is_palindrome_none_input(self):
+        """Test palindrome detection with None input."""
+        assert is_palindrome(None) is False
+
+    def test_is_palindrome_non_string_input(self):
+        """Test palindrome detection with non-string input."""
+        assert is_palindrome(123) is False
+
+
 # Parametrized tests for comprehensive coverage
 class TestParametrized:
     """Parametrized test cases for all functions."""
@@ -107,3 +147,19 @@ class TestParametrized:
     def test_count_vowels_parametrized(self, input_str, expected):
         """Test count_vowels function with parametrized inputs."""
         assert count_vowels(input_str) == expected
+
+    @pytest.mark.parametrize(
+        "input_str,expected",
+        [
+            ("racecar", True),
+            ("hello", False),
+            ("race car", True),
+            ("RaceCar", True),
+            ("A man, a plan, a canal: Panama", True),
+            ("a", True),
+            ("", True),
+        ],
+    )
+    def test_is_palindrome_parametrized(self, input_str, expected):
+        """Test is_palindrome function with parametrized inputs."""
+        assert is_palindrome(input_str) == expected

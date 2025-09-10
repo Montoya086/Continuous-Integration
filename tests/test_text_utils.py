@@ -4,7 +4,7 @@ Unit tests for the text_utils module.
 
 import pytest
 
-from src.text_utils import count_vowels, is_palindrome, reverse, to_upper
+from src.text_utils import concat, count_vowels, is_palindrome, reverse, to_upper
 
 
 class TestReverse:
@@ -151,6 +151,39 @@ class TestToUpper:
         assert to_upper(123) == ""
 
 
+class TestConcat:
+    """Test cases for concat function."""
+
+    def test_concat_basic(self):
+        """Test basic string concatenation."""
+        assert concat("hello", "world") == "helloworld"
+
+    def test_concat_with_spaces(self):
+        """Test concatenation with spaces."""
+        assert concat("hello", " world") == "hello world"
+
+    def test_concat_empty_strings(self):
+        """Test concatenation of empty strings."""
+        assert concat("", "") == ""
+
+    def test_concat_one_empty(self):
+        """Test concatenation with one empty string."""
+        assert concat("hello", "") == "hello"
+        assert concat("", "world") == "world"
+
+    def test_concat_none_inputs(self):
+        """Test concatenation with None inputs."""
+        assert concat(None, "world") == "world"
+        assert concat("hello", None) == "hello"
+        assert concat(None, None) == ""
+
+    def test_concat_non_string_inputs(self):
+        """Test concatenation with non-string inputs."""
+        assert concat(123, "world") == "world"
+        assert concat("hello", 456) == "hello"
+        assert concat(123, 456) == ""
+
+
 # Parametrized tests for comprehensive coverage
 class TestParametrized:
     """Parametrized test cases for all functions."""
@@ -214,3 +247,17 @@ class TestParametrized:
     def test_to_upper_parametrized(self, input_str, expected):
         """Test to_upper function with parametrized inputs."""
         assert to_upper(input_str) == expected
+
+    @pytest.mark.parametrize(
+        "a,b,expected",
+        [
+            ("hello", "world", "helloworld"),
+            ("hello", " world", "hello world"),
+            ("", "", ""),
+            ("hello", "", "hello"),
+            ("", "world", "world"),
+        ],
+    )
+    def test_concat_parametrized(self, a, b, expected):
+        """Test concat function with parametrized inputs."""
+        assert concat(a, b) == expected

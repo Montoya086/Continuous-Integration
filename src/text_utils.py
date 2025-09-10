@@ -74,6 +74,24 @@ def to_upper(s):
     return s.upper()
 
 
+def concat(a, b):
+    """
+    Return a string that joins two strings provided.
+
+    Args:
+        a (str): First string
+        b (str): Second string
+
+    Returns:
+        str: Concatenated string
+    """
+    if not isinstance(a, str):
+        a = ""
+    if not isinstance(b, str):
+        b = ""
+    return a + b
+
+
 def main():
     """Main function for command line usage."""
     print("Text Processor Demo")
@@ -86,6 +104,7 @@ def main():
     print(f"Vowels count: {count_vowels(test_string)}")
     print(f"Is palindrome: {is_palindrome(test_string)}")
     print(f"To upper: {to_upper(test_string)}")
+    print(f"Concat: {concat('Hello', ' World')}")
 
 
 if __name__ == "__main__":

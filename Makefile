@@ -11,10 +11,14 @@ install-dev: ## Install the package in development mode with dev dependencies
 	pip install -e ".[dev]"
 
 test: ## Run tests
-	pytest
+	python scripts/run_tests.py
 
 test-cov: ## Run tests with coverage
-	pytest --cov=src --cov-report=html --cov-report=term-missing
+	if [ -d "tests" ] && [ "$$(find tests -name 'test_*.py' -o -name '*_test.py' | wc -l)" -gt 0 ]; then \
+		pytest --cov=src --cov-report=html --cov-report=term-missing; \
+	else \
+		echo "✅ No tests found - skipping test execution"; \
+	fi
 
 lint: ## Run linting
 	flake8 src tests

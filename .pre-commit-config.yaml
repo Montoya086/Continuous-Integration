@@ -32,9 +32,10 @@ repos:
     hooks:
       - id: pytest
         name: pytest
-        entry: pytest
+        entry: python scripts/run_tests.py
         language: system
         types: [python]
-        args: [tests/]
         pass_filenames: false
         always_run: true
+        stages: [pre-commit]
+        verbose: true

@@ -1,5 +1,6 @@
 name: Python Tests
 
+# Updated to fix Python 3.1 error - now using Python 3.9-3.12
 on:
   push:
     branches: [ main, develop ]
@@ -17,12 +18,12 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Cache pip dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}

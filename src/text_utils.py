@@ -109,7 +109,7 @@ def to_upper(s):
         except Exception as e:
             raise TypeError(f"Cannot convert input to string: {e}")
 
-    return s
+    return s.upper()
 
 
 def concat(a, b):

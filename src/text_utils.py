@@ -1,18 +1,32 @@
-def dummy_function():
+"""
+Text utilities module for demonstration purposes.
+"""
+
+
+def reverse(s):
     """
-    Dummy function that always returns True.
+    Return the reverse of the given string.
+
+    Args:
+        s (str): String to reverse
 
     Returns:
-        bool: Always True
+        str: Reversed string
     """
-    return True
+    if not isinstance(s, str):
+        return ""
+    return s[::-1]
 
 
 def main():
     """Main function for command line usage."""
     print("Text Processor Demo")
     print("=" * 50)
-    print("Dummy function result:", dummy_function())
+
+    # Ejemplos de uso
+    test_string = "Hello World"
+    print(f"Original: {test_string}")
+    print(f"Reverse: {reverse(test_string)}")
 
 
 if __name__ == "__main__":

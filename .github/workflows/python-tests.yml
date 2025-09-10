@@ -2,10 +2,8 @@ name: Python Tests
 
 # Updated to fix Python 3.1 error - now using Python 3.9-3.12
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   test:
